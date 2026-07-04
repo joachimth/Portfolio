@@ -1,5 +1,5 @@
 const GITHUB_USERNAME = "joachimth";
-const REPO_LIMIT = 5;
+const REPO_LIMIT = 10;
 const EXCLUDED_REPOS = ["Portfolio"];
 
 const repoGrid = document.getElementById("repoGrid");
@@ -11,44 +11,84 @@ const navLinks = document.querySelectorAll(".nav-link");
 
 const fallbackRepos = [
   {
-    name: "El-tilbudsberegner",
-    html_url: "https://github.com/joachimth/El-tilbudsberegner",
-    description: "Fast quote calculator concept for electricians.",
-    language: "JavaScript",
-    stargazers_count: 0,
-    updated_at: "2026-01-24T22:07:31Z"
+    name: "mk3-reference-loudspeaker",
+    html_url: "https://github.com/joachimth/mk3-reference-loudspeaker",
+    description: "Reference loudspeaker design project – MK3 revision.",
+    language: "Python",
+    stargazers_count: 1,
+    updated_at: "2026-07-04T19:18:03Z"
+  },
+  {
+    name: "speaker-design",
+    html_url: "https://github.com/joachimth/speaker-design",
+    description: "Speaker cabinet and crossover design tool.",
+    language: "TypeScript",
+    stargazers_count: 1,
+    updated_at: "2026-07-04T18:11:50Z"
   },
   {
     name: "SI5351-TCXO-Radio",
     html_url: "https://github.com/joachimth/SI5351-TCXO-Radio",
-    description: "Radio project based on stable clock generation and RF experimentation.",
+    description: "Hardware for an AM Airband Receiver.",
     language: "C++",
-    stargazers_count: 0,
-    updated_at: "2026-03-28T12:32:37Z"
+    stargazers_count: 1,
+    updated_at: "2026-06-23T11:51:59Z"
   },
   {
-    name: "lyd-lab",
-    html_url: "https://github.com/joachimth/lyd-lab",
-    description: "Audio lab experiments and sound-related practical projects.",
+    name: "El-tilbudsberegner",
+    html_url: "https://github.com/joachimth/El-tilbudsberegner",
+    description: "Quote calculator tool for electricians.",
+    language: "TypeScript",
+    stargazers_count: 1,
+    updated_at: "2026-06-12T08:49:29Z"
+  },
+  {
+    name: "track-robot-v2",
+    html_url: "https://github.com/joachimth/track-robot-v2",
+    description: "Web Flasher for an ESP32-based tracked robot platform.",
+    language: "C",
+    stargazers_count: 1,
+    updated_at: "2026-06-12T08:48:12Z"
+  },
+  {
+    name: "speedometer-app",
+    html_url: "https://github.com/joachimth/speedometer-app",
+    description: "GPS-based speedometer application.",
     language: "JavaScript",
-    stargazers_count: 0,
-    updated_at: "2026-01-25T18:13:35Z"
+    stargazers_count: 1,
+    updated_at: "2026-06-12T08:47:36Z"
   },
   {
-    name: "intercept",
-    html_url: "https://github.com/joachimth/intercept",
-    description: "Hands-on technical project centered on hardware and embedded work.",
+    name: "adsb-planes-mil",
+    html_url: "https://github.com/joachimth/adsb-planes-mil",
+    description: "ADSB tracker page for EU military aircraft.",
+    language: "JavaScript",
+    stargazers_count: 1,
+    updated_at: "2026-06-12T08:47:36Z"
+  },
+  {
+    name: "storybook",
+    html_url: "https://github.com/joachimth/storybook",
+    description: "Storybook and narrative experiments.",
+    language: "Python",
+    stargazers_count: 0,
+    updated_at: "2026-06-12T08:47:36Z"
+  },
+  {
+    name: "esp32-ecu-reversing-for-speeduino",
+    html_url: "https://github.com/joachimth/esp32-ecu-reversing-for-speeduino",
+    description: "ESP32 ECU reverse-engineering work targeting Speeduino compatibility.",
     language: "C++",
-    stargazers_count: 0,
-    updated_at: "2026-01-01T00:00:00Z"
+    stargazers_count: 1,
+    updated_at: "2026-06-05T05:38:58Z"
   },
   {
-    name: "adsb-feeder-image",
-    html_url: "https://github.com/joachimth/adsb-feeder-image",
-    description: "Tooling related to ADS-B feeder deployment and image-based setup.",
-    language: "Dockerfile",
-    stargazers_count: 0,
-    updated_at: "2026-01-01T00:00:00Z"
+    name: "keydatabaseforthefun",
+    html_url: "https://github.com/joachimth/keydatabaseforthefun",
+    description: "Key database utility project.",
+    language: "Python",
+    stargazers_count: 1,
+    updated_at: "2026-06-01T04:48:27Z"
   }
 ];
 
@@ -104,7 +144,7 @@ function renderRepos(repos, message = "") {
 async function loadRepos() {
   try {
     const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=12`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=20`,
       {
         headers: {
           Accept: "application/vnd.github+json"
