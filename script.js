@@ -11,52 +11,75 @@ const navLinks = document.querySelectorAll(".nav-link");
 
 const fallbackRepos = [
   {
+    name: "alpaca-trading-bot",
+    html_url: "https://github.com/joachimth/alpaca-trading-bot",
+    description:
+      "AI-powered autonomous daytrading bot using Alpaca API - Cloudflare Worker + D1.",
+    language: "TypeScript",
+    stargazers_count: 0,
+    updated_at: "2026-09-15T16:05:04Z"
+  },
+  {
+    name: "mattrin",
+    html_url: "https://github.com/joachimth/mattrin",
+    description:
+      "Socratic math tutor for HTX students with a deterministic CAS core.",
+    language: "TypeScript",
+    stargazers_count: 0,
+    updated_at: "2026-09-13T12:47:20Z"
+  },
+  {
+    name: "speaker-design-mk2",
+    html_url: "https://github.com/joachimth/speaker-design-mk2",
+    description:
+      "Next-gen loudspeaker design tool with physics engine, optimizer, and wizard UI.",
+    language: "TypeScript",
+    stargazers_count: 1,
+    updated_at: "2026-09-09T18:18:34Z"
+  },
+  {
+    name: "decibel-meter",
+    html_url: "https://github.com/joachimth/decibel-meter",
+    description:
+      "Professional decibel meter web app with real-time SPL, spectrum analyzer, and dosimeter.",
+    language: "TypeScript",
+    stargazers_count: 0,
+    updated_at: "2026-09-08T11:26:25Z"
+  },
+  {
+    name: "carport-beregner",
+    html_url: "https://github.com/joachimth/carport-beregner",
+    description:
+      "Statisk fordimensionering af carporte efter Eurocode 5 (DK NA).",
+    language: "TypeScript",
+    stargazers_count: 0,
+    updated_at: "2026-08-03T10:55:05Z"
+  },
+  {
+    name: "milair-dashboard",
+    html_url: "https://github.com/joachimth/milair-dashboard",
+    description:
+      "Dashboard for MilAir Watch flight history data (Cloudflare D1 backend).",
+    language: "JavaScript",
+    stargazers_count: 0,
+    updated_at: "2026-08-02T20:45:35Z"
+  },
+  {
     name: "mk3-reference-loudspeaker",
     html_url: "https://github.com/joachimth/mk3-reference-loudspeaker",
-    description: "Reference loudspeaker design project – MK3 revision.",
+    description: "Active 3-way DIY reference loudspeaker design project.",
     language: "Python",
     stargazers_count: 1,
-    updated_at: "2026-07-04T19:18:03Z"
+    updated_at: "2026-07-31T12:47:13Z"
   },
   {
-    name: "speaker-design",
-    html_url: "https://github.com/joachimth/speaker-design",
-    description: "Speaker cabinet and crossover design tool.",
+    name: "skur-beregner",
+    html_url: "https://github.com/joachimth/skur-beregner",
+    description:
+      "Statisk fordimensionering af skure efter Eurocode 5 (DK) med tegninger og 3D.",
     language: "TypeScript",
-    stargazers_count: 1,
-    updated_at: "2026-07-04T18:11:50Z"
-  },
-  {
-    name: "SI5351-TCXO-Radio",
-    html_url: "https://github.com/joachimth/SI5351-TCXO-Radio",
-    description: "Hardware for an AM Airband Receiver.",
-    language: "C++",
-    stargazers_count: 1,
-    updated_at: "2026-06-23T11:51:59Z"
-  },
-  {
-    name: "El-tilbudsberegner",
-    html_url: "https://github.com/joachimth/El-tilbudsberegner",
-    description: "Quote calculator tool for electricians.",
-    language: "TypeScript",
-    stargazers_count: 1,
-    updated_at: "2026-06-12T08:49:29Z"
-  },
-  {
-    name: "track-robot-v2",
-    html_url: "https://github.com/joachimth/track-robot-v2",
-    description: "Web Flasher for an ESP32-based tracked robot platform.",
-    language: "C",
-    stargazers_count: 1,
-    updated_at: "2026-06-12T08:48:12Z"
-  },
-  {
-    name: "speedometer-app",
-    html_url: "https://github.com/joachimth/speedometer-app",
-    description: "GPS-based speedometer application.",
-    language: "JavaScript",
-    stargazers_count: 1,
-    updated_at: "2026-06-12T08:47:36Z"
+    stargazers_count: 0,
+    updated_at: "2026-07-19T10:28:43Z"
   },
   {
     name: "adsb-planes-mil",
@@ -64,31 +87,15 @@ const fallbackRepos = [
     description: "ADSB tracker page for EU military aircraft.",
     language: "JavaScript",
     stargazers_count: 1,
-    updated_at: "2026-06-12T08:47:36Z"
+    updated_at: "2026-07-12T20:09:34Z"
   },
   {
-    name: "storybook",
-    html_url: "https://github.com/joachimth/storybook",
-    description: "Storybook and narrative experiments.",
-    language: "Python",
-    stargazers_count: 0,
-    updated_at: "2026-06-12T08:47:36Z"
-  },
-  {
-    name: "esp32-ecu-reversing-for-speeduino",
-    html_url: "https://github.com/joachimth/esp32-ecu-reversing-for-speeduino",
-    description: "ESP32 ECU reverse-engineering work targeting Speeduino compatibility.",
-    language: "C++",
-    stargazers_count: 1,
-    updated_at: "2026-06-05T05:38:58Z"
-  },
-  {
-    name: "keydatabaseforthefun",
-    html_url: "https://github.com/joachimth/keydatabaseforthefun",
-    description: "Key database utility project.",
-    language: "Python",
-    stargazers_count: 1,
-    updated_at: "2026-06-01T04:48:27Z"
+    name: "track-robot-v2",
+    html_url: "https://github.com/joachimth/track-robot-v2",
+    description: "Web Flasher for an ESP32-based tracked robot platform.",
+    language: "C",
+    stargazers_count: 2,
+    updated_at: "2026-07-06T13:55:44Z"
   }
 ];
 
@@ -124,7 +131,7 @@ function buildRepoCard(repo) {
     <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
       <div class="repo-top">
         <div class="repo-name">${escapeHtml(repo.name)}</div>
-        <div class="repo-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+        <div class="repo-arrow"><i class="fas fa-external-link-alt"></i></div>
       </div>
       <div class="repo-description">${escapeHtml(description)}</div>
       <div class="repo-meta">
@@ -186,18 +193,69 @@ function handleHeaderScroll() {
 }
 
 function setupMobileNav() {
+  const setOpen = (open) => {
+    navBar.classList.toggle("nav-open", open);
+    hamburger?.setAttribute("aria-expanded", String(open));
+  };
+
   hamburger?.addEventListener("click", () => {
-    navBar.classList.toggle("nav-open");
+    setOpen(!navBar.classList.contains("nav-open"));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      navBar.classList.contains("nav-open") &&
+      !navBar.contains(event.target) &&
+      !hamburger?.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+    }
   });
 
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      navBar.classList.remove("nav-open");
+      setOpen(false);
 
       navLinks.forEach((item) => item.classList.remove("active"));
       link.classList.add("active");
     });
   });
+}
+
+function setupScrollSpy() {
+  const sections = [...navLinks]
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!sections.length || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        navLinks.forEach((item) => {
+          item.classList.toggle(
+            "active",
+            item.getAttribute("href") === `#${entry.target.id}`
+          );
+        });
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+
+  sections.forEach((section) => observer.observe(section));
 }
 
 function setYear() {
@@ -212,6 +270,7 @@ window.addEventListener("scroll", handleHeaderScroll);
 window.addEventListener("DOMContentLoaded", () => {
   handleHeaderScroll();
   setupMobileNav();
+  setupScrollSpy();
   setYear();
   loadRepos();
 });

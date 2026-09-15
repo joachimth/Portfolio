@@ -52,6 +52,31 @@ img {
   margin: 0 auto;
 }
 
+/* ─── Accessibility & preferences ─────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: rgba(76, 201, 240, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ─── Header ─────────────────────────────────────────── */
 .site-header {
   position: sticky;
