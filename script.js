@@ -2,6 +2,26 @@ const GITHUB_USERNAME = "joachimth";
 const REPO_LIMIT = 10;
 const EXCLUDED_REPOS = ["Portfolio"];
 
+document.documentElement.classList.add("js");
+
+const LANGUAGE_COLORS = {
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  Python: "#3572a5",
+  "C++": "#f34b7d",
+  C: "#555555",
+  "C#": "#178600",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Shell: "#89e051",
+  Dockerfile: "#384d54",
+  Go: "#00add8",
+  Rust: "#dea584",
+  Java: "#b07219",
+  Vue: "#41b883",
+  Svelte: "#ff3e00"
+};
+
 const repoGrid = document.getElementById("repoGrid");
 const repoStatus = document.getElementById("repoStatus");
 const header = document.querySelector(".site-header");
@@ -120,22 +140,23 @@ function escapeHtml(value = "") {
     .replaceAll("'", "&#039;");
 }
 
-function buildRepoCard(repo) {
+function buildRepoCard(repo, index = 0) {
   const description =
     repo.description?.trim() || "No description provided yet.";
   const language = repo.language || "Not specified";
+  const langColor = LANGUAGE_COLORS[language] || "var(--muted)";
   const stars = repo.stargazers_count ?? 0;
   const updated = formatDate(repo.updated_at);
 
   return `
-    <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+    <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener noreferrer" style="animation-delay:${index * 60}ms">
       <div class="repo-top">
         <div class="repo-name">${escapeHtml(repo.name)}</div>
         <div class="repo-arrow"><i class="fas fa-external-link-alt"></i></div>
       </div>
       <div class="repo-description">${escapeHtml(description)}</div>
       <div class="repo-meta">
-        <span class="repo-chip"><i class="fas fa-code"></i>${escapeHtml(language)}</span>
+        <span class="repo-chip"><span class="lang-dot" style="background:${langColor}"></span>${escapeHtml(language)}</span>
         <span class="repo-chip"><i class="fas fa-star"></i>${stars}</span>
         <span class="repo-chip"><i class="fas fa-clock"></i>${escapeHtml(updated)}</span>
       </div>
@@ -144,7 +165,7 @@ function buildRepoCard(repo) {
 }
 
 function renderRepos(repos, message = "") {
-  repoGrid.innerHTML = repos.map(buildRepoCard).join("");
+  repoGrid.innerHTML = repos.map((repo, i) => buildRepoCard(repo, i)).join("");
   repoStatus.textContent = message;
 }
 
@@ -182,6 +203,70 @@ async function loadRepos() {
       "GitHub could not be reached, so fallback projects are shown."
     );
   }
+}
+
+function setStat(key, value) {
+  const el = document.querySelector(`[data-stat="${key}"]`);
+  if (el && value !== null && value !== undefined && value !== "") {
+    el.textContent = value;
+  }
+}
+
+async function loadStats() {
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}`,
+      {
+        headers: {
+          Accept: "application/vnd.github+json"
+        }
+      }
+    );
+
+    if (!response.ok) {
+      return;
+    }
+
+    const data = await response.json();
+    setStat("repos", data.public_repos);
+    setStat("followers", data.followers);
+
+    if (data.created_at) {
+      setStat("since", new Date(data.created_at).getFullYear());
+    }
+  } catch (error) {
+    console.error("Failed to load GitHub stats:", error);
+  }
+}
+
+function setupReveal() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) {
+    return;
+  }
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("reveal-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+  );
+
+  items.forEach((el) => observer.observe(el));
 }
 
 function handleHeaderScroll() {
@@ -271,6 +356,8 @@ window.addEventListener("DOMContentLoaded", () => {
   handleHeaderScroll();
   setupMobileNav();
   setupScrollSpy();
+  setupReveal();
   setYear();
   loadRepos();
+  loadStats();
 });
